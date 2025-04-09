@@ -12,8 +12,20 @@ const linkList = ref([
   },
   {
     path: '/computed',
-    name:'计算属性学习'
-  }
+    name: '计算属性学习',
+  },
+  {
+    path: '/add-style',
+    name: '绑定样式',
+  },
+  {
+    path: '/if-show',
+    name: 'if和show',
+  },
+  {
+    path: '/for',
+    name: 'for循环的使用',
+  },
 ])
 </script>
 

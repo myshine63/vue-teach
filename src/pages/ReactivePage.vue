@@ -60,11 +60,32 @@ const g = reactive({
 const changeG = () => {
   g.f++
 }
+// i不具备响应式
 const h = ref({ num: 0 })
 const { num: i } = h.value
-console.log(i,111)
+console.log(i, 111)
 const changeH = () => {
   h.value.num++
+}
+
+// 结构赋值的时候
+let j = reactive({ name: { num: 0 } })
+let { name: k } = j
+const changeJ = () => {
+  j.name.num++
+}
+const changeK = () => {
+  k.num++
+}
+let flag = true
+const changeK2 = () => {
+  console.log(flag,111)
+  if (flag) {
+    k = { num: 1111 }
+    flag = false
+  } else {
+    k.num++
+  }
 }
 </script>
 
@@ -72,19 +93,20 @@ const changeH = () => {
   <div class="container">
     <div>a.value is {{ a }}。在模版中使用的时候，不需要使用a.value会自动解包</div>
     <div>b.name is {{ b.name }}</div>
-    <div @click="changeCName">{{ c.name }}</div>
-    <div @click="changeCFirst">{{ c.name.first }}</div>
-    <div @click="addProps">{{ c.age?.num }} addprop</div>
-    <div @click="changeNum">{{ c.age?.num }} 22</div>
-    <div @click="changeD">{{ d.name }} 33dd</div>
+    <div @click="changeCName">c.name is {{ c.name }}</div>
+    <div @click="changeCFirst">c.name.first is {{ c.name.first }}</div>
+    <div @click="addProps">c.age.num is {{ c.age?.num }} addprop</div>
+    <div @click="changeNum">c.age?.num is {{ c.age?.num }} 22</div>
+    <div @click="changeD">d is {{ d }} 33dd</div>
     <div @click="changeEName">e.name is {{ e.name }},e.age.num is {{ e.age.num }}</div>
     <div @click="changeENum">e.age.num is {{ e.age.num }}</div>
     <div @click="changeF">f.value is {{ f }}</div>
     <div @click="changeG">g.f is {{ g.f }}</div>
-    <div @click="changeH">{{i}}</div>
+    <div @click="changeH">i is {{ i }}</div>
+    <div @click="changeJ">j is {{ j }}</div>
+    <div @click="changeK">k is {{ k }}</div>
+    <div @click="changeK2">k is {{ k }}</div>
   </div>
 </template>
 
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>

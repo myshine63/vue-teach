@@ -19,6 +19,21 @@ const router = createRouter({
       name: 'computed',
       component: () => import('@/pages/ComputedPage.vue'),
     },
+    {
+      path: '/add-style',
+      name: 'addStyle',
+      component: () => import('@/pages/AddStylePage.vue'),
+    },
+    {
+      path: '/if-show',
+      name: 'ifAndShow',
+      component: () => import('@/pages/IfAndShowPage.vue'),
+    },
+    {
+      path: '/for',
+      name: 'forPage',
+      component: () => import('@/pages/ForPage.vue'),
+    },
   ],
 })
 
