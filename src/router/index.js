@@ -34,6 +34,16 @@ const router = createRouter({
       name: 'forPage',
       component: () => import('@/pages/ForPage.vue'),
     },
+    {
+      path: '/event',
+      name: 'eventPage',
+      component: () => import('@/pages/EventPage.vue'),
+    },
+    {
+      path: '/form',
+      name: 'formPage',
+      component: () => import('@/pages/FormPage.vue'),
+    },
   ],
 })
 

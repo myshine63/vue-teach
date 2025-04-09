@@ -26,6 +26,14 @@ const linkList = ref([
     path: '/for',
     name: 'for循环的使用',
   },
+  {
+    path: '/event',
+    name: '绑定事件',
+  },
+  {
+    path: '/form',
+    name: '表单',
+  },
 ])
 </script>
 
