@@ -1,16 +1,19 @@
 <script setup>
 import { RouterView } from 'vue-router'
+import RouteList from '@/components/RouteList.vue'
 </script>
 
 <template>
   <div class="app">
-    <header class="header">vue教学demo</header>
-    <main class="main">
-      <nav class="nav"></nav>
-      <div class="content">
+    <div class="header flex-center">vue教学</div>
+    <div class="main">
+      <div class="left-menu">
+        <RouteList></RouteList>
+      </div>
+      <div class="right-content">
         <RouterView />
       </div>
-    </main>
+    </div>
   </div>
 </template>
 
@@ -22,28 +25,26 @@ import { RouterView } from 'vue-router'
   flex-direction: column;
 
   .header {
-    height: 100px;
-    width: 100%;
-    border-bottom: 1px solid palegoldenrod;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 50px;
+    height: 60px;
+    border-bottom: 1px solid #eaecef;
+    font-size: 30px;
   }
 
   .main {
-    width: 100%;
     flex: 1;
     display: flex;
 
-    .nav {
+    .left-menu {
       width: 300px;
       height: 100%;
-      border-right: 1px solid salmon;
-      background: papayawhip;
+      border-right: 1px solid #eaecef;
+      overflow-y: auto;
+      background-color: #f9fafb;
+      padding: 20px;
     }
 
-    .content {
+    .right-content {
+      padding: 20px;
       flex: 1;
       height: 100%;
     }

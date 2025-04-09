@@ -1,0 +1,58 @@
+<script setup>
+import { ref } from 'vue'
+
+const linkList = ref([
+  {
+    path: '/',
+    name: 'home',
+  },
+  {
+    path: '/reactive',
+    name: '响应式变量基本学习',
+  },
+  {
+    path: '/computed',
+    name:'计算属性学习'
+  }
+])
+</script>
+
+<template>
+  <div class="route-list">
+    <RouterLink
+      v-for="link in linkList"
+      :key="link.name"
+      :to="link.path"
+      exact-active-class="selected"
+    >
+      {{ link.name }}
+    </RouterLink>
+  </div>
+</template>
+
+<style scoped lang="scss">
+.route-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  a {
+    text-decoration: none;
+    height: 20px;
+    line-height: 20px;
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 12px;
+    color: #4822a5;
+
+    &:hover {
+      background-color: #f5eeff;
+    }
+  }
+
+  .selected {
+    border-radius: 12px;
+    background-color: #e8deff;
+  }
+}
+</style>

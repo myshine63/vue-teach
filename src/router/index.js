@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomePage from '@/pages/HomePage.vue'
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -9,9 +10,14 @@ const router = createRouter({
       component: HomePage,
     },
     {
-      path: '/demo1',
-      name: 'demo1',
-      component: import('@/pages/DemoOne.vue'),
+      path: '/reactive',
+      name: 'reactive',
+      component: () => import('@/pages/ReactivePage.vue'),
+    },
+    {
+      path: '/computed',
+      name: 'computed',
+      component: () => import('@/pages/ComputedPage.vue'),
     },
   ],
 })

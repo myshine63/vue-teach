@@ -1,0 +1,108 @@
+<script setup>
+import { computed, reactive, ref } from 'vue'
+
+/**
+ * 1. 计算属性必须有返回值
+ * 2. 当计算属性中的响应式变量发生变化的时候，会自动更新
+ * 3. 如果计算属性中没有响应式，只会更新一次
+ * 普通方法
+ * 1. 普通方法中如果有响应式，每次页面更新的时候都会重新进行计算
+ * 2. 普通方法中没有响应式，页面更新的时候才会更新
+ */
+const user = reactive({
+  name: '',
+  age: 10,
+})
+const showList = ref(true)
+const list = reactive([
+  {
+    name: 'tom',
+    age: 12,
+  },
+  {
+    name: 'jerry',
+    age: 5,
+  },
+])
+
+const filterList = computed(() => {
+  return list.filter((item) => {
+    return item.age > 6
+  })
+})
+const calcList = () => {
+  alert(11111)
+  return list.filter((item) => {
+    return item.age > 6
+  })
+}
+const addList = () => {
+  list.push({
+    ...user,
+  })
+}
+
+/////
+const showList1 = ref(true)
+const list1 = [
+  {
+    name: 'tom',
+    age: 12,
+  },
+  {
+    name: 'jerry',
+    age: 5,
+  },
+]
+const filterList1 = computed(() => {
+  return list1.filter((item) => {
+    return item.age > 6
+  })
+})
+const calcList1 = () => {
+  alert(22222)
+  return list1.filter((item) => {
+    return item.age > 6
+  })
+}
+
+const addList1 = () => {
+  list1.push({
+    ...user,
+  })
+}
+</script>
+
+<template>
+  <div class="container">
+    <input type="text" v-model="user.name" />
+    <input v-model="user.age" type="number" />
+    <button @click="addList">add list</button>
+    <div @click="showList=!showList">list</div>
+    <template v-if="showList">
+      <div v-for="item in filterList">name is :{{ item.name }}, age is {{ item.age }}</div>
+      <div v-for="item in calcList()">name is :{{ item.name }}, age is {{ item.age }}</div>
+    </template>
+    <div @click="showList1=!showList1">list1</div>
+    <button @click="addList1">add list1</button>
+    <template v-if="showList1">
+      <div v-for="item in filterList1">computed name is :{{ item.name }}, age is {{ item.age }}</div>
+      <div v-for="item in calcList1()">name is :{{ item.name }}, age is {{ item.age }}</div>
+    </template>
+
+  </div>
+</template>
+
+<style scoped lang="scss">
+input {
+  width: 200px;
+  height: 30px;
+  line-height: 30px;
+}
+
+button {
+  width: 100px;
+  height: 30px;
+  line-height: 30px;
+}
+</style>
