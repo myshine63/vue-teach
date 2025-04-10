@@ -38,6 +38,18 @@ const linkList = ref([
     path: '/watch',
     name: '监听器使用',
   },
+  {
+    path: '/dom',
+    name: '引用dom',
+  },
+  {
+    path: '/component',
+    name: '组件的基本用法',
+  },
+  {
+    path: '/life-cycle',
+    name: '生命周期',
+  },
 ])
 </script>
 

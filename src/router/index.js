@@ -49,6 +49,21 @@ const router = createRouter({
       name: 'watchPage',
       component: () => import('@/pages/WatchPage.vue'),
     },
+    {
+      path: '/dom',
+      name: 'domPage',
+      component: () => import('@/pages/DomPage.vue'),
+    },
+    {
+      path: '/component',
+      name: 'componentPage',
+      component: () => import('@/pages/baseComponentPage/BaseComponentPage.vue'),
+    },
+    {
+      path: '/life-cycle',
+      name: 'lifeCyclePage',
+      component: () => import('@/pages/lifeCycle/LifeCyclePage.vue'),
+    },
   ],
 })
 
