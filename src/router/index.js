@@ -44,6 +44,11 @@ const router = createRouter({
       name: 'formPage',
       component: () => import('@/pages/FormPage.vue'),
     },
+    {
+      path: '/watch',
+      name: 'watchPage',
+      component: () => import('@/pages/WatchPage.vue'),
+    },
   ],
 })
 

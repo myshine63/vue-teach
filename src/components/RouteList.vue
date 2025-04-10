@@ -34,6 +34,10 @@ const linkList = ref([
     path: '/form',
     name: '表单',
   },
+  {
+    path: '/watch',
+    name: '监听器使用',
+  },
 ])
 </script>
 
