@@ -50,7 +50,7 @@ export default {
 <template>
   <div class="container">
     <div @click.stop="handleClick">this is child1 component,num is {{ num }}</div>
-    <VSon></VSon>
+    <VSon class="aaa" text="1111"></VSon>
   </div>
 </template>
 

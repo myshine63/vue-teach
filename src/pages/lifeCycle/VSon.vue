@@ -31,7 +31,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div>this is son component</div>
+  <div class="aaa" >this is son component</div>
 </template>
 
 <style scoped lang="scss"></style>
