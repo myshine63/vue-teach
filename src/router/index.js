@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomePage from '@/pages/HomePage.vue'
 import useUserInfoStore from '@/stores/userInfo.js'
-
+// 基于路由的代码分割
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -86,9 +86,9 @@ const router = createRouter({
     {
       path: '/router-page/:id',
       name: 'routerPage',
-      meta: {
-        needLogin: true,
-      },
+      // meta: {
+      //   needLogin: true,
+      // },
       component: () => import('@/pages/RouterPage.vue'),
     },
     {
@@ -101,6 +101,9 @@ const router = createRouter({
       name: 'postPage',
       meta: {
         needLogin: true,
+      },
+      beforeEnter: (to, from, next) => {
+
       },
       component: () => import('@/pages/PostPage.vue'),
     },

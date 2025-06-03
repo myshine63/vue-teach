@@ -2,6 +2,7 @@
 import { computed, ref } from 'vue'
 import { instance, login, registry } from '@/http/index.js'
 import useUserInfoStore from '@/stores/userInfo.js'
+import { ElMessage } from 'element-plus'
 
 const username = ref('')
 const password = ref('')
@@ -17,11 +18,6 @@ const toggleText = computed(() => {
 const toggleBtn = () => {
   status.value = !status.value
 }
-const register = () => {
-  registry(username.value, password.value).then(() => {
-    status.value = true
-  })
-}
 const handleBtn = () => {
   if (isLoading.value) {
     return
@@ -32,7 +28,11 @@ const handleBtn = () => {
     login(username.value, password.value)
       .then((data) => {
         instance.defaults.headers.common['Authorization'] = data.token
-        userInfoStore.setUser(data)
+        userInfoStore.setUser(data);
+        ElMessage({
+          message: '账号登录成功',
+          type: 'success',
+        })
       })
       .finally(() => {
         isLoading.value = false
@@ -42,6 +42,10 @@ const handleBtn = () => {
     registry(username.value, password.value)
       .then((data) => {
         status.value = true
+        ElMessage({
+          message: '账号注册成功，请登录',
+          type: 'success',
+        })
       })
       .finally(() => {
         isLoading.value = false
