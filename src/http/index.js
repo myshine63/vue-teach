@@ -19,5 +19,11 @@ export async function login(username, password) {
   })
 }
 
-export const instance = axios.create();
+export async function getUserInfo(token) {
+  return axios.get('/user', { headers: { Authorization: token } }).then((res) => {
+    return res.data
+  })
+}
 
+const instance = axios.create()
+export default instance

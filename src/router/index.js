@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomePage from '@/pages/HomePage.vue'
 import useUserInfoStore from '@/stores/userInfo.js'
+import instance, { getUserInfo } from '@/http/index.js'
+import { ElMessage } from 'element-plus'
 // 基于路由的代码分割
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -102,9 +104,6 @@ const router = createRouter({
       meta: {
         needLogin: true,
       },
-      beforeEnter: (to, from, next) => {
-
-      },
       component: () => import('@/pages/PostPage.vue'),
     },
     {
@@ -114,14 +113,27 @@ const router = createRouter({
     },
   ],
 })
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
   document.title = to.name
   const userinfoStore = useUserInfoStore()
   if (to.meta.needLogin) {
     if (userinfoStore.user.isLogin) {
       next()
     } else {
-      next('/login')
+      let token = window.localStorage.getItem('token')
+      if (token) {
+        try {
+          let user = await getUserInfo(token)
+          userinfoStore.setUser(user)
+          instance.defaults.headers.common['Authorization'] = token
+          next()
+        } catch (err) {
+          ElMessage.error('登录过期请重新登录')
+          next('/login')
+        }
+      } else {
+        next('/login')
+      }
     }
   }
   next()

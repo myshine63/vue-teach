@@ -70,6 +70,10 @@ const linkList = ref([
     path: '/login',
     name: '登录',
   },
+  {
+    path: '/post',
+    name: 'post页面',
+  },
 ])
 </script>
 
