@@ -135,8 +135,9 @@ router.beforeEach(async (to, from, next) => {
         next('/login')
       }
     }
+  } else {
+    next()
   }
-  next()
 })
 router.afterEach((to, from) => {
   let num = Number(localStorage.getItem('duration')) || Date.now()

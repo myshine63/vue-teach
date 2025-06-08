@@ -6,8 +6,13 @@ export const createPostApi = (title, text) => {
   })
 }
 export const listPostApi = (page, size) => {
+
   return instance.post('/post/list', { page, size }).then((res) => {
-    return res.data
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(res.data)
+      },1000)
+    })
   })
 }
 export const updatePostApi = (post) => {

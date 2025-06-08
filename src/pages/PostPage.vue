@@ -1,6 +1,6 @@
 <script setup>
 import { onMounted, reactive, ref } from 'vue'
-import { ElButton, ElInput } from 'element-plus'
+import { ElButton, ElInput,ElSkeleton } from 'element-plus'
 import { createPostApi, listPostApi, updatePostApi } from '@/http/post.js'
 
 const title = ref('')
@@ -9,6 +9,7 @@ const pageInfo = reactive({ page: 1, size: 5 })
 const postList = ref([])
 const editType = ref('add') // add
 const updateId = ref(-1)
+const isLoading = ref(false)
 // 点击按钮
 const handleBtn = () => {
   if (editType.value === 'add') {
@@ -38,10 +39,18 @@ const updatePost = () => {
 const deletePost = () => {}
 // 获取post列表
 const getPostList = () => {
-  listPostApi(pageInfo.page, pageInfo.size).then((res) => {
-    postList.value.push(...res)
-    pageInfo.page = pageInfo.page + 1
-  })
+  if (isLoading.value) {
+    return
+  }
+  isLoading.value = true
+  listPostApi(pageInfo.page, pageInfo.size)
+    .then((res) => {
+      postList.value.push(...res)
+      pageInfo.page = pageInfo.page + 1
+    })
+    .finally(() => {
+      isLoading.value = false
+    })
 }
 // 点击更新按钮
 const handleUpdateBtn = (post) => {
@@ -83,7 +92,10 @@ onMounted(() => {
         <div class="title">text</div>
         <div>{{ post.text }}</div>
       </div>
+      <el-skeleton :rows="5" animated v-if="isLoading" />
     </div>
+
+    <el-button class="title" @click="getPostList" v-if="!isLoading">load 下一页数据</el-button>
   </div>
 </template>
 
