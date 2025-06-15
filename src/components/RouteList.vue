@@ -74,6 +74,10 @@ const linkList = ref([
     path: '/post',
     name: 'post页面',
   },
+  {
+    path: '/calendar',
+    name: 'calendar页面',
+  },
 ])
 </script>
 
